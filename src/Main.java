@@ -83,6 +83,7 @@ public class Main {
     public static void main(String[] args) {
         Main mn = new Main();
         mn.WINDOW();
+        
         /*Menu_Aplicacion mn = new Menu_Aplicacion();
         mn.INIT_WINDOW();*/
     }

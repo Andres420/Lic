@@ -9,11 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 public class Menu_Aplicacion {
+
+    private final Object[] columnsNames = {"Cedula", "Nombre", "Celular", "Licencia","mierda"};
     private ArrayList list = new ArrayList();
     private final JFrame window = new JFrame("MENU");
     public static JButton btnadd = new JButton("Agregar Persona"),
@@ -25,7 +28,8 @@ public class Menu_Aplicacion {
     private final JPanel panel_up = new JPanel(),
             panel_down = new JPanel(),
             panel_center = new JPanel();
-    private final JTable table = new JTable();
+    private JTable table;
+
     public void INIT_WINDOW() {
         COMPONENT_UP();
         COMPONENT_CENTER();
@@ -36,7 +40,7 @@ public class Menu_Aplicacion {
         window.add(panel_down, BorderLayout.SOUTH);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setVisible(true);
-        window.setResizable(false);
+        window.setResizable(true);
         window.pack();
         window.setLocationRelativeTo(null);
     }
@@ -59,7 +63,7 @@ public class Menu_Aplicacion {
         KeyListener listener = new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                
+
             }
 
             @Override
@@ -77,6 +81,14 @@ public class Menu_Aplicacion {
     }
 
     private void COMPONENTS_DOWN() {
-        //Crear tabla
+        
+        Object[][] information = {
+            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1",null},
+            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1",null},
+            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1",null}
+        };
+        table = new JTable(information, columnsNames);
+        JScrollPane js = new JScrollPane(table);
+        panel_down.add(js);
     }
 }

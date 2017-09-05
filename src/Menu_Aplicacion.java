@@ -22,8 +22,6 @@ public class Menu_Aplicacion {
         "Nombre",
         "Celular",
         "Licencia",
-        "Entero",
-        "Dictamen",
         "Cita"};
     private ArrayList list = new ArrayList();
     private final JFrame window = new JFrame("MENU");
@@ -64,9 +62,9 @@ public class Menu_Aplicacion {
 
     private void COMPONENT_CENTER() {
         Object[][] information = {
-            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1","no","no","no"},
-            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1","si","si","si"},
-            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1","si","si","no"}
+            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1","no"},
+            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1","si"},
+            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1","no"}
         };
         DefaultTableModel Tabla = new DefaultTableModel(information,columnsNames)
             {

@@ -1,6 +1,9 @@
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 public class Menu_Aplicacion {
-
+    private ArrayList list = new ArrayList();
     private final JFrame window = new JFrame("MENU");
     public static JButton btnadd = new JButton("Agregar Persona"),
             btnmodify = new JButton("Modificar Persona"),
@@ -53,6 +56,24 @@ public class Menu_Aplicacion {
         search.setFont(fuente);
         panel_center.add(lblsearch);
         panel_center.add(search);
+        KeyListener listener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                String buscador = search.getText();
+                list = DataBase.Buscar(buscador);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        };
+        search.addKeyListener(listener);
     }
 
     private void COMPONENTS_DOWN() {

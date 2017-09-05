@@ -1,6 +1,7 @@
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
@@ -71,7 +72,7 @@ public class Main {
                         password.setText("");
                         JOptionPane.showMessageDialog(null, "Cuenta o clave incorrecta");
                     }
-                } catch (Exception ex) {
+                } catch (HeadlessException ex) {
                     ex.printStackTrace();
                 }
             }

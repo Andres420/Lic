@@ -1,5 +1,6 @@
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,18 +14,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 
 public class Menu_Aplicacion {
 
-    private final Object[] columnsNames = {"Cedula", "Nombre", "Celular", "Licencia","mierda"};
+    private final Object[] columnsNames = {"Cedula",
+        "Nombre",
+        "Celular",
+        "Licencia",
+        "Entero",
+        "Dictamen",
+        "Cita"};
     private ArrayList list = new ArrayList();
     private final JFrame window = new JFrame("MENU");
     public static JButton btnadd = new JButton("Agregar Persona"),
             btnmodify = new JButton("Modificar Persona"),
             btndelete = new JButton("Eliminar Persona");
     private final JLabel lblsearch = new JLabel("Buscar: ");
-    private final JTextField search = new JTextField(10);
-    private final Font fuente = new Font("Monospaced", Font.BOLD, 15);
+    private final JTextField search = new JTextField();
+    private final Font fuente = new Font("Monospaced", Font.BOLD, 18);
     private final JPanel panel_up = new JPanel(),
             panel_down = new JPanel(),
             panel_center = new JPanel();
@@ -46,7 +54,6 @@ public class Menu_Aplicacion {
     }
 
     private void COMPONENT_UP() {
-        panel_up.setLayout(new BoxLayout(panel_up, BoxLayout.X_AXIS));
         panel_up.add(btnadd);
         panel_up.add(btnmodify);
         panel_up.add(btndelete);
@@ -56,10 +63,33 @@ public class Menu_Aplicacion {
     }
 
     private void COMPONENT_CENTER() {
-        panel_center.setLayout(new BoxLayout(panel_center, BoxLayout.X_AXIS));
+        Object[][] information = {
+            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1","no","no","no"},
+            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1","si","si","si"},
+            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1","si","si","no"}
+        };
+        DefaultTableModel Tabla = new DefaultTableModel(information,columnsNames)
+            {
+                @Override
+                public boolean isCellEditable(int row, int col)
+                {
+                    return false;
+                }
+            };
+        
+        table = new JTable(Tabla);
+        JScrollPane js = new JScrollPane(table);
+        panel_center.add(js);
+        panel_center.setLayout(new BoxLayout(panel_center,BoxLayout.X_AXIS));
+        
+    }
+
+    private void COMPONENTS_DOWN() {
+        panel_down.setLayout(new BoxLayout(panel_down, BoxLayout.X_AXIS));
         search.setFont(fuente);
-        panel_center.add(lblsearch);
-        panel_center.add(search);
+        lblsearch.setFont(fuente);
+        panel_down.add(lblsearch);
+        panel_down.add(search);
         KeyListener listener = new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -78,17 +108,6 @@ public class Menu_Aplicacion {
             }
         };
         search.addKeyListener(listener);
-    }
-
-    private void COMPONENTS_DOWN() {
         
-        Object[][] information = {
-            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1",null},
-            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1",null},
-            {"207900237", "Andres Alberto Ávila Brenes", "88737280", "B1",null}
-        };
-        table = new JTable(information, columnsNames);
-        JScrollPane js = new JScrollPane(table);
-        panel_down.add(js);
     }
 }

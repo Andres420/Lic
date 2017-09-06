@@ -13,12 +13,14 @@ public class Persona {
     private int cellphone;
     private String name;
     private String license;
+    private String pay; 
     
-    public Persona(int identification,String name,int cellphone, String license){
+    public Persona(int identification,String name,int cellphone, String license,String pay){
         this.identification = identification;
         this.name = name;
         this.cellphone = cellphone;
         this.license = license;
+        this.pay = pay;
     }
     
     public int getIdentification() {
@@ -51,6 +53,13 @@ public class Persona {
 
     public void setKindlicense(String license) {
         this.license = license;
+    }
+    public String getPay() {
+        return pay;
+    }
+
+    public void setPay(String pay) {
+        this.pay = pay;
     }
 
 }

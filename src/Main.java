@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
 
 public class Main {
 
@@ -36,7 +35,7 @@ public class Main {
         window.add(panel_up, BorderLayout.NORTH);
         window.add(panel_center, BorderLayout.CENTER);
         window.add(panel_down, BorderLayout.SOUTH);
-        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
         window.setResizable(false);
         window.pack();

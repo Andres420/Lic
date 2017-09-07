@@ -19,13 +19,16 @@ class Actionlistener implements ActionListener {
         } else if (e.getSource() == Menu_Aplicacion.btndelete) {
             Ventana_Eliminar ve = new Ventana_Eliminar();
             ve.INITWINDOW();
-            //ve.setModal(true);
-            //ve.setVisible(true);
+            ve.setModal(true);
+            ve.setVisible(true);
         }
         else if(e.getSource() == Ventana_Agregar.btnsave){
             //Llamar a la base de datos
         }else if(e.getSource() == Ventana_Modificar.btnsave_modify){
             //Guardar modificado a la base de datos
+        }
+        else if(e.getSource() == Ventana_Eliminar.btndelete_per){
+            //Borrar persona de base
         }
     }
 

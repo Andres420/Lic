@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 class Ventana_Modificar extends JDialog{
 
     
-        DefaultTableModel Tabla;
+    DefaultTableModel Tabla;
     private final Object[] columnsNames = {"Cedula",
         "Nombre",
         "Celular",

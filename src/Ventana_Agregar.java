@@ -2,6 +2,7 @@
 import java.awt.Font;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -14,7 +15,8 @@ class Ventana_Agregar extends JDialog{
     private final String[] list_combo ={"A1","A2","A3","B1","B2","B3","B4",
     "C1","C2","D1","D2","D3","E1","E2"};
     private final JPanel panel_identification = new JPanel(),
-            panel_name = new JPanel(), panel_cellphone = new JPanel();
+            panel_name = new JPanel(), panel_cellphone = new JPanel(),
+            panel_save = new JPanel();
     private final JPanel panel_license = new JPanel(), panel_pay = new JPanel();
     private final JLabel lblide = new JLabel("Cedula: "),lblname = new JLabel("Nombre: "),
             lblcel = new JLabel("Celular: "),lbllicense = new JLabel("Tipo de licencia: "),
@@ -24,6 +26,7 @@ class Ventana_Agregar extends JDialog{
             cellphone = new JTextField(15);
     private final JRadioButton jrbpago_si = new JRadioButton("Si"),jrbpago_no = new JRadioButton("No");
     private final JComboBox kind_license = new JComboBox(list_combo);
+    public static  JButton btnsave= new JButton("Guardar");
     
     public void INITWINDOW() {
         Panel_Name();
@@ -31,11 +34,13 @@ class Ventana_Agregar extends JDialog{
         Panel_Cellphone();
         Panel_License();
         Panel_Pay();
+        Panel_Save();
         this.add(panel_identification);
         this.add(panel_name);
         this.add(panel_cellphone);
         this.add(panel_license);
         this.add(panel_pay);
+        this.add(panel_save);
         this.setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.pack();
@@ -81,6 +86,12 @@ class Ventana_Agregar extends JDialog{
         panel_pay.add(jrbpago_si);
         panel_pay.add(jrbpago_no);
         
+    }
+
+    private void Panel_Save() {
+        btnsave.setFont(fuente);
+        panel_save.add(btnsave);
+        btnsave.addActionListener(new Actionlistener()); 
     }
 
 }

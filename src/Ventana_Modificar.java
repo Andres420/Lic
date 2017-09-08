@@ -2,7 +2,10 @@
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -25,6 +28,7 @@ class Ventana_Modificar extends JDialog{
         "Nombre",
         "Celular",
         "Licencia",
+        "Pago",
         "Cita"};
     private final String[] list_combo ={"A1","A2","A3","B1","B2","B3","B4",
     "C1","C2","D1","D2","D3","E1","E2"};
@@ -87,7 +91,11 @@ class Ventana_Modificar extends JDialog{
             @Override
             public void keyReleased(KeyEvent e) {
                 String buscador = search.getText();
-                list = DataBase.Buscar(buscador);
+                try {
+                    list = DataBase.Buscar(buscador);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
                 Table_Change(list);
             }
         };
@@ -172,6 +180,7 @@ class Ventana_Modificar extends JDialog{
             Tabla.setValueAt(person.getCellphone(), k, 2);
             Tabla.setValueAt(person.getKindlicense(), k, 3);
             Tabla.setValueAt(person.getPay(), k, 4);
+            Tabla.setValueAt(person.getAppointment(), k, 5);
         }
     }
 }

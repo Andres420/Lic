@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -17,10 +18,12 @@ import javax.swing.table.DefaultTableModel;
 public class Menu_Aplicacion {
 
     DefaultTableModel Tabla;
+    static Ventana_Agregar va;
     private final Object[] columnsNames = {"Cedula",
         "Nombre",
         "Celular",
         "Licencia",
+        "Pago",
         "Cita"};
     Object[][] information = {};
     private ArrayList<Persona> list = new ArrayList<>();
@@ -64,14 +67,12 @@ public class Menu_Aplicacion {
     }
 
     private void COMPONENT_CENTER() {
-        Tabla = new DefaultTableModel(information,columnsNames)
-            {
-                @Override
-                public boolean isCellEditable(int row, int col)
-                {
-                    return false;
-                }
-            };        
+        Tabla = new DefaultTableModel(information, columnsNames) {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        };
         table = new JTable(Tabla);
         table.setFont(fuente);
         JScrollPane js = new JScrollPane(table);
@@ -100,7 +101,11 @@ public class Menu_Aplicacion {
             @Override
             public void keyReleased(KeyEvent e) {
                 String buscador = search.getText();
-                list = DataBase.Buscar(buscador);
+                try {
+                    list = DataBase.Buscar(buscador.toUpperCase());
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
                 Table_Change(list);
             }
         };
@@ -110,15 +115,15 @@ public class Menu_Aplicacion {
 
     private void Table_Change(ArrayList list) {
         int numFilas = Tabla.getRowCount();
-        
+
         if (numFilas > 0) {
             for (int i = numFilas - 1; i >= 0; i--) {
                 Tabla.removeRow(i);
             }
         }
-        
+
         Tabla.setNumRows(list.size());
-        
+
         for (int k = 0; k < list.size(); k++) {
             Persona person = (Persona) list.get(k);
             Tabla.setValueAt(person.getIdentification(), k, 0);
@@ -126,6 +131,7 @@ public class Menu_Aplicacion {
             Tabla.setValueAt(person.getCellphone(), k, 2);
             Tabla.setValueAt(person.getKindlicense(), k, 3);
             Tabla.setValueAt(person.getPay(), k, 4);
+            Tabla.setValueAt(person.getAppointment(), k, 5);
         }
     }
 }

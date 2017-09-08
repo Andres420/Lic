@@ -1,26 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Extreme pc
- */
 public class Persona {
     private int identification;
     private int cellphone;
     private String name;
     private String license;
     private String pay; 
+    private String appointment;
     
-    public Persona(int identification,String name,int cellphone, String license,String pay){
+    public Persona(int identification,String name,int cellphone, String license,String pay,String appointment){
         this.identification = identification;
         this.name = name;
         this.cellphone = cellphone;
         this.license = license;
         this.pay = pay;
+        this.appointment = appointment;
     }
     
     public int getIdentification() {
@@ -60,6 +53,13 @@ public class Persona {
 
     public void setPay(String pay) {
         this.pay = pay;
+    }
+    public String getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(String appointment) {
+        this.appointment = appointment;
     }
 
 }

@@ -10,36 +10,89 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-class Ventana_Agregar extends JDialog{
+class Ventana_Agregar extends JDialog {
 
-    private final String[] list_combo ={"A1","A2","A3","B1","B2","B3","B4",
-    "C1","C2","D1","D2","D3","E1","E2"};
+    public static boolean Person() {
+        boolean person_real = false;
+        if (!identification.getText().equals("")) {
+            if (!name.getText().equals("")) {
+                if (!cellphone.getText().equals("")) {
+                    if (jrbpago_si.isSelected() == true) {
+                        String k = (String) kind_license.getSelectedItem();
+
+                        if (jrbcita_si.isSelected() == true) {
+                            person_real = true;
+                            person = new Persona(Integer.parseInt(identification.getText()), name.getText().toLowerCase(),
+                                    Integer.parseInt(cellphone.getText()),
+                                    k,
+                                    "Si",
+                                    "Si");
+                        } else if (jrbcita_no.isSelected() == true) {
+                            person_real = true;
+                            person = new Persona(Integer.parseInt(identification.getText()), name.getText().toLowerCase(),
+                                    Integer.parseInt(cellphone.getText()),
+                                    k,
+                                    "Si",
+                                    "No");
+                        }
+
+                    } else if (jrbpago_no.isSelected() == true) {
+                        String k = (String) kind_license.getSelectedItem();
+
+                        if (jrbcita_si.isSelected() == true) {
+                            person_real = true;
+                            person = new Persona(Integer.parseInt(identification.getText()), name.getText().toLowerCase(),
+                                    Integer.parseInt(cellphone.getText()),
+                                    k,
+                                    "No",
+                                    "Si");
+                        } else if (jrbcita_no.isSelected() == true) {
+                            person_real = true;
+                            person = new Persona(Integer.parseInt(identification.getText()), name.getText().toLowerCase(),
+                                    Integer.parseInt(cellphone.getText()),
+                                    k,
+                                    "No",
+                                    "No");
+                        }
+                    }
+                }
+            }
+        }
+        return person_real;
+    }
+
+    private static final String[] list_combo = {"A1", "A2", "A3", "B1", "B2", "B3", "B4",
+        "C1", "C2", "D1", "D2", "D3", "E1", "E2"};
     private final JPanel panel_identification = new JPanel(),
             panel_name = new JPanel(), panel_cellphone = new JPanel(),
-            panel_save = new JPanel();
+            panel_save = new JPanel(), panel_appoinrment = new JPanel();
     private final JPanel panel_license = new JPanel(), panel_pay = new JPanel();
-    private final JLabel lblide = new JLabel("Cedula: "),lblname = new JLabel("Nombre: "),
-            lblcel = new JLabel("Celular: "),lbllicense = new JLabel("Tipo de licencia: "),
+    private final JLabel lblide = new JLabel("Cedula: "), lblname = new JLabel("Nombre: "),
+            lblcel = new JLabel("Celular: "), lbllicense = new JLabel("Tipo de licencia: "),
             lblpay = new JLabel("Tiene pago: ");
     private final Font fuente = new Font("Monospaced", Font.BOLD, 18);
-    private final JTextField identification = new JTextField(15),name = new JTextField(15),
-            cellphone = new JTextField(15);
-    private final JRadioButton jrbpago_si = new JRadioButton("Si"),jrbpago_no = new JRadioButton("No");
-    private final JComboBox kind_license = new JComboBox(list_combo);
-    public static  JButton btnsave= new JButton("Guardar");
-    
+    public static JTextField identification = new JTextField("", 15), name = new JTextField("", 15),
+            cellphone = new JTextField("", 15);
+    public static JRadioButton jrbpago_si = new JRadioButton("Si"), jrbpago_no = new JRadioButton("No"),
+            jrbcita_si = new JRadioButton("Si"), jrbcita_no = new JRadioButton("No");
+    private static final JComboBox kind_license = new JComboBox(list_combo);
+    public static JButton btnsave = new JButton("Guardar");
+    public static Persona person;
+
     public void INITWINDOW() {
         Panel_Name();
         Panel_Identification();
         Panel_Cellphone();
         Panel_License();
         Panel_Pay();
+        Panel_Appointment();
         Panel_Save();
         this.add(panel_identification);
         this.add(panel_name);
         this.add(panel_cellphone);
         this.add(panel_license);
         this.add(panel_pay);
+        this.add(panel_appoinrment);
         this.add(panel_save);
         this.setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -85,13 +138,26 @@ class Ventana_Agregar extends JDialog{
         group.add(jrbpago_no);
         panel_pay.add(jrbpago_si);
         panel_pay.add(jrbpago_no);
-        
+
     }
 
     private void Panel_Save() {
         btnsave.setFont(fuente);
         panel_save.add(btnsave);
-        btnsave.addActionListener(new Actionlistener()); 
+        btnsave.addActionListener(new Actionlistener());
+    }
+
+    private void Panel_Appointment() {
+        JLabel lblcita = new JLabel("Tiene la cita: ");
+        lblcita.setFont(fuente);
+        panel_appoinrment.add(lblcita);
+        jrbcita_si.setFont(fuente);
+        jrbcita_no.setFont(fuente);
+        ButtonGroup group = new ButtonGroup();
+        group.add(jrbcita_si);
+        group.add(jrbcita_no);
+        panel_appoinrment.add(jrbcita_si);
+        panel_appoinrment.add(jrbcita_no);
     }
 
 }

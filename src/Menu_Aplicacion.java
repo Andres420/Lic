@@ -19,6 +19,8 @@ public class Menu_Aplicacion {
 
     DefaultTableModel Tabla;
     static Ventana_Agregar va;
+    static Ventana_Modificar vm;
+    static Ventana_Eliminar ve;
     private final Object[] columnsNames = {"Cedula",
         "Nombre",
         "Celular",

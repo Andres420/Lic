@@ -2,15 +2,9 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 class Actionlistener implements ActionListener {
-
-    
-    Ventana_Modificar vm = new Ventana_Modificar();
-    Ventana_Eliminar ve = new Ventana_Eliminar();
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -21,14 +15,16 @@ class Actionlistener implements ActionListener {
             Menu_Aplicacion.va.setVisible(true);
 
         } else if (e.getSource() == Menu_Aplicacion.btnmodify) {
-            vm.INITWINDOW();
-            vm.setModal(true);
-            vm.setVisible(true);
+            Menu_Aplicacion.vm = new Ventana_Modificar();
+            Menu_Aplicacion.vm.INITWINDOW();
+            Menu_Aplicacion.vm.setModal(true);
+            Menu_Aplicacion.vm.setVisible(true);
 
         } else if (e.getSource() == Menu_Aplicacion.btndelete) {
-            ve.INITWINDOW();
-            ve.setModal(true);
-            ve.setVisible(true);
+            Menu_Aplicacion.ve = new Ventana_Eliminar();
+            Menu_Aplicacion.ve.INITWINDOW();
+            Menu_Aplicacion.ve.setModal(true);
+            Menu_Aplicacion.ve.setVisible(true);
 
         } else if (e.getSource() == Ventana_Agregar.btnsave) {
             boolean person = Ventana_Agregar.Person();
@@ -49,12 +45,12 @@ class Actionlistener implements ActionListener {
             }
         } else if (e.getSource() == Ventana_Modificar.btnsave_modify) {
             //Guardar modificado a la base de datos
-            vm.setModal(false);
-            vm.dispose();
+            Menu_Aplicacion.vm.setModal(false);
+            Menu_Aplicacion.vm.dispose();
         } else if (e.getSource() == Ventana_Eliminar.btndelete_per) {
             //Borrar persona de base
-            ve.setModal(false);
-            ve.dispose();
+            Menu_Aplicacion.ve.setModal(false);
+            Menu_Aplicacion.ve.dispose();
         }
     }
 
